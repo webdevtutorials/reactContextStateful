@@ -103,35 +103,58 @@ export default App;
 
 
 ## Additional theory and explanation:
-- MyContext is a single returned **OBJECT**. When stored in a variable it becomes a **STABLE REFERENCE**, as opposed to creating a new reference every time by calling a function. As such, it is an **IDENTIFIER** because it refers to one specific object instance.
-    ```const MyContext = createContext(null)```
 
-- It contains **MyContext.Provider** and **MyContext.Consumer** properties, which both point to the same object.
+- To pass stateful data create MyProvider component with React reserved keyword **children**. This keyword means that everything this component wraps around is passed as properties in an object, which in itself is a parameter called "children". This is also the place, where the data is passed into **value** property
 
-- Consumers get access to data once wrapped in a provider like this:
-    ```<MyContext.Provider />```
-and import useContext from 'react' and MyContext from the object location.
+```js
+    function MyProvider({ children }) {
+    const [data, setData] = useState(null);
 
-- The providers receives data ones the data is assigned to the value property
-in the wrapper like this:
-    ```<MyContext.Provider value={3} />```
+    return (
+        <MyContext.Provider value={{ data, setData }}>
+            {children}
+        </MyContext.Provider>
+    );
+}
+```
 
-- The wrapped consumer access the data like this:
-    ```const value = useContext(MyContext)```
-if it or any of it's parents wrapped in a provider.
 
-- To be retrived, the value must be located in the nearest MyContext.Provider
-If no provider is found, the default value is returned.
+- Wrap consumers in a provider like this:
+```js
+        <MyProvider>
+            <AnyComponent />
+        </MyProvider>
+```
 
-## Quick-start step guide:
+## Quick-start guide:
 1. Create provider-consumer relationship:
     ```const MyContext = createContext(null)```
 
-2. Wrap consumers in a provider:
-    ```<MyContext.Provider />```
+2. Create Context Provider Component:
+    ```js
+    function MyProvider({ children }) {
+        const [data, setData] = useState(null);
 
-3. Supply the data via "value" property:
-    ```<MyContext.Provider value="My data" />```
+        return (
+            <MyContext.Provider value={{ data, setData }}>
+            {children}
+            </MyContext.Provider>
+        );
+        }
+    ```
 
-4. Retrieve data using useContext hook:
-    ```const value = useContext(MyContext)```
+3. Wrap consumers in a provider:
+    ```js
+        <MyProvider>
+            <AnyComponent />
+        </MyProvider>
+    ```
+
+4. To set data in a consumer implemet useEffect to avoid infinite loop and crush:
+    ```js
+        const { data, setData } = useContext(MyContext);
+
+        useEffect(() => {
+            setData("Stateful");
+        }, [setData]);
+    ```
