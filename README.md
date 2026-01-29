@@ -104,7 +104,7 @@ export default App;
 
 ## Additional theory and explanation:
 
-- To pass stateful data create MyProvider component with React reserved keyword **children**. This keyword means that everything this component wraps around is passed as properties in an object, which in itself is a parameter called "children". This is also the place, where the data is passed into **value** property
+- To pass stateful data create MyProvider component with React reserved keyword **children**. This keyword means that everything this component wraps around is passed as properties in an object, which in itself is a parameter called "children". In this component the data is also passed into the **value** property.
 
 ```js
     function MyProvider({ children }) {
