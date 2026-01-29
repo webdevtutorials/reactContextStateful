@@ -7,14 +7,14 @@ A quick-start guide to scaffolding a React-Vite project and implementing a basic
 
 ---
 
-## If you just downloaded the repository and want to see the app:
+## To run the app:
 ```bash
 cd reactContextStateful
 yarn install
 yarn dev
 ```
 
-## To build your own start a new Vite-React project:
+## To build from scratch start a new Vite-React project:
 ```bash
 cd tutorials
 
@@ -41,7 +41,7 @@ gh repo create reactContextStateful --public --source=. --remote=origin --push
 code
 ```
 
-## Create static context consuming React component:
+## Create React component (context consumer):
 ```bash
 cd src
 code AnyComponent.jsx
