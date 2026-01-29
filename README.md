@@ -137,7 +137,7 @@ export default App;
 
         return (
             <MyContext.Provider value={{ data, setData }}>
-            {children}
+                {children}
             </MyContext.Provider>
         );
         }
@@ -150,7 +150,7 @@ export default App;
         </MyProvider>
     ```
 
-4. To set data in a consumer implemet useEffect to avoid infinite loop and crush:
+4. Use useEffect hook to update stateful data inside a consumer to avoid infinite loop and crush:
     ```js
         const { data, setData } = useContext(MyContext);
 
