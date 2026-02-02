@@ -4,17 +4,17 @@ import { useState, createContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import AnyComponent from './AnyComponent.jsx';
+import ComponentExample from './ComponentExample.jsx';
 
-export const MyContext = createContext(null);
+export const ContextExample = createContext(null);
 
 function MyProvider({ children }) {
-  const [data, setData] = useState(null);
+  const [dataExample, setDataExample] = useState(null);
 
   return (
-    <MyContext.Provider value={{ data, setData }}>
+    <ContextExample.Provider value={{ dataExample, setDataExample }}>
       {children}
-    </MyContext.Provider>
+    </ContextExample.Provider>
   );
 }
 
@@ -33,7 +33,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <MyProvider>
-        <AnyComponent />
+        <ComponentExample />
       </MyProvider>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
